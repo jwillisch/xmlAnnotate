@@ -1,95 +1,86 @@
-install.packages("XML")
-install.packages("plyr")
-install.packages("ggplot2")
-install.packages("gridExtra")
+xml_grab <- function(files,types){
+  #import for single file
+  if(grepl("*.xml$",files)){
+    txt <- paste(readLines(files), collapse = "\n")
+    names(txt) <- basename(files)
+  }
+  #import for all xmls in folder
+  else{
+    filelist<- list.files(files,pattern="*.xml$")
+    txt <- sapply(paste(files, filelist, sep="/"),function(x){paste(readLines(x),collapse = "\n")})
+    names(txt) <- filelist
+  }
+  #clean type tag
+  txt <- sapply(txt, function(x,types){gsub(paste("type(",types[1],"|",types[2],")>=", sep=""), "type=", x, fixed=TRUE)},types=types,simplify=T) #clean xml tags for annotation types and get rid of ">="
+  #extractor function
+  data_extract <- function(xml,filename){
+    doc <- XML::xmlParse(xml) #back into XML
+    xmltop <- XML::xmlRoot(doc) #content of root
+    #class(xmltop)#"XMLInternalElementNode" "XMLInternalNode" "XMLAbstractNode"
+    #xmlName(xmltop) #give name of node, PubmedArticleSet
+    #xmlSize(xmltop) #how many children in node, 19
+    #xmlName(xmltop[[1]]) #name of root's children
+    #xmlName(xmltop[[2]]) #name of root's children
+    #xmlSize(xmltop[[2]]) #number of nodes in each child
+    #xmlSApply(xmltop[[2]], xmlName) #name(s)
+    dat <- as.data.frame(XML::xmlSApply(xmltop[[2]], xmlAttrs)) #attribute(s)
 
-require("XML")
-require("plyr")
-require("ggplot2")
-require("gridExtra")
-
-#First thing that we have to do is to clean up the data a bit 
-#In particular, we have to strip out the ">=" and change to = 
-
-txt <- gsub("type(speculation|notspeculation)>=", "type=", 
-paste(readLines("C:/Users/jwillisc/PowerFolders/R Stuff/Stuff for Nicole/New_Learn_NB.xml"), collapse = "\n"), fixed=TRUE) #This gets rid of the >=
-
-doc <- xmlParse(txt) #this puts it back into XML
-
-xmltop = xmlRoot(doc) #gives content of root
-class(xmltop)#"XMLInternalElementNode" "XMLInternalNode" "XMLAbstractNode"
-xmlName(xmltop) #give name of node, PubmedArticleSet
-xmlSize(xmltop) #how many children in node, 19
-xmlName(xmltop[[1]]) #name of root's children
-xmlName(xmltop[[2]]) #name of root's children
-
-xmltop[[1]]
-xmltop[[2]]
-
-xmlSize(xmltop[[2]]) #number of nodes in each child
-xmlSApply(xmltop[[2]], xmlName) #name(s)
-dat <- as.data.frame(xmlSApply(xmltop[[2]], xmlAttrs)) #attribute(s)
-dat[1:2,] 
-
-write.csv2(dat, "test_xml.csv") #If we want to save the data 
-
-# Next step - Want to turn this into a datafile (Do you want me to put all of this into a function?)
+    #put xml attributes in separate frames
+    dat_H <- data.frame(t(dat[colnames(dat)=="HEDGE"]),filename=rep(filename,nrow(t(dat[colnames(dat)=="HEDGE"]))),stringsAsFactors = F)
+    dat_W <- as.data.frame(t(dat[colnames(dat)=="WORD"]),stringsAsFactors = F)
+    dat_N <- as.data.frame(t(dat[colnames(dat)=="NOTE"]),stringsAsFactors = F)
 
 
+    # end points of sentences and word
+    s <- as.integer(dat_H$end)+1
+    w <- as.integer(dat_W$end)
+    n <- as.integer(dat_N$end)
 
-#transpose data into three frames for Hedges, Words and Notes to better handle variables
-dat_H <- as.data.frame(t(dat[colnames(dat)=="HEDGE"])[-186,],stringsAsFactors = F)##tmp:remove line 186 H185: non-increasing position of end point
-dat_W <- as.data.frame(t(dat[colnames(dat)=="WORD"]),stringsAsFactors = F)
-dat_N <- as.data.frame(t(dat[colnames(dat)=="NOTE"]),stringsAsFactors = F)
-
-# Prepare Trigger Words 
-#
-#tmp:remove line 186 because it is not monotonically increasing in the sentence end-point
-#create intervals for endpoints of HEDGES (note that findInterval() treats the first interval break as exclusive, therefore +1
-
-v <- as.integer(dat_H$end)+1
-#and WORDS in 
-x <- as.integer(dat_W$end)
-
-#is vector v monotonically increasing?
-#all(v == cummax(v)) 
-#at which position is the break?
-#which.max( v < cummax(v) ) which
-
-##create index indicating to which hedge each trigger word belongs (there is a HEDGE 0 therefore +1)
-w_index <- findInterval(x,v)+1
-
-#create empty list to hold lists of trigger words for each HEDGE
-w<-rep(list(NA),nrow(dat_H))
-
-#assign indexed Trigger Words to n (e.g. HEDGE 16 is non-existent, and some HEDGES do not have any trigger words)
-w[unique(w_index)]<- tapply(dat_W$text,w_index,as.list)
-
-
-# Prep. Notes - similar to words but simpler because there is only one note per sentence
-
-v <- as.integer(dat_H$end)+1
-x <- as.integer(dat_N$end)
-
-##create index indicating to which hedge each trigger word belongs
-n_index <- findInterval(x,v)+1
-
-#create empty list to hold lists of trigger words for each HEDGE
-n<-rep(NA,nrow(dat_H))
-
-#assign indexed Trigger Words to n (e.g. HEDGE 16 is non-existent, and some HEDGES do not have any trigger words)
-n[unique(n_index)]<- dat_N$type
-
-
-
-# Create Data-Frame 
-XML_DATA <- data.frame(
-  ID=rep(1,nrow(dat_H)) # I don't know yet how you want to handle meeting ID's yet
-  ,Meeting=rep(1,nrow(dat_H)) # I don't know yet how you want to handle this
-  ,Sent_No = as.numeric(gsub("(H)(\\d)","\\2",dat_H$id)) # Take Digit After ID Var from HEDGE ID
-  ,Hedge_ID= paste("[",dat_H$start,"-",dat_H$end,"]") # Create character vector indicating position of sentence
-  ,Speculation= paste(dat_H$type) #Create Character vector indicating handcoded annotation
-  ,Notes=n #add notes from above
-  ,stringsAsFactors = F
-  )
-XML_DATA$Words <- w # to incorporate nested list structure this needs to go outside for some reason
+    #check if endpoints are monotonically increasing
+    if(all(s==cummax(s))){
+      #index mapping word to sentences
+      w_index <- findInterval(w,s)+1
+      # index mapping notes to sentences
+      n_index <- findInterval(n,s)+1
+    }
+    #determine non-increasing end points and prompt if they should be excluded
+    else{
+      badpoints <- which(!(s==cummax(s)))
+      x <- readline(prompt = paste("Sentence end points not monotonically increasing for HEDGE",badpoints-1,", do you want to exclude them? y/n: "))
+      #exclude Hedges with non-increasing endpoints if yes
+      if(x=="y"){
+        dat_H <- data.frame(t(dat[colnames(dat)=="HEDGE"])[-badpoints,],filename=rep(filename,nrow(t(dat[colnames(dat)=="HEDGE"])[-badpoints,])),stringsAsFactors = F)
+        s <- as.integer(dat_H$end)+1
+        #index mapping word to sentences
+        w_index <- findInterval(w,s)+1
+        # index mapping notes to sentences
+        n_index <- findInterval(n,s)+1
+      }
+    }
+    # trigger words
+    twords <- rep(NA,nrow(dat_H))
+    if(length(dat_W$text)>1){
+      twords[unique(w_index)]<- tapply(dat_W$text,w_index,FUN=paste0,collapse=";", simplify=T)
+    }
+    # ID file-sentence
+    id <- paste(dat_H$filename,as.numeric(gsub("(H)(\\d)","\\2",dat_H$id)),sep="-")
+    # Sentence No.
+    sentence <-  as.numeric(gsub("(H)(\\d)","\\2",dat_H$id))
+    # Senence Span
+    hedge <- paste("[",dat_H$start,"-",dat_H$end,"]",sep = "")
+    #Topic Code
+    tcode <- paste(dat_H$type)
+    #Notes
+    notes<-rep(NA,nrow(dat_H))
+    if(length(dat_N$type)>1){
+      notes[unique(n_index)]<- dat_N$type
+    }
+    remove(list = c("doc","xml"))
+    return(data.frame(id=id,sentence=sentence,topic_code=tcode,sspan=hedge,triggerwords=twords,notes=notes,stringsAsFactors = F))
+  }
+  # run extractor over xmls and extract xml filenames on the run
+  data_list <- sapply(seq_along(txt),function(i) data_extract(txt[[i]],filename = names(txt)[[i]]),simplify=F)
+  #combine
+  out <- do.call("rbind",data_list)
+  return(out)
+}
