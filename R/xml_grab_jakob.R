@@ -1,3 +1,16 @@
+#' XML Annotate
+#'
+#' \code{xml_grab} takes one or multiple xml files containing annotated text and extracts annotations and the textpositions they belong to in a neatly formated dataframe.
+#'
+#' @param files A string indicating the path of an .xml file or a folder containint multiple .xml files
+#' @param types A string vector of length 2 indicating the topic types that were used for annotation
+#'
+#' @return S3 \code{data.frame} object containing a sentence id, sentence number,topic code,trigger words, sentence span and position in the text and notes,
+#' @examples
+#' xml_grab("C:/Users/User/Desktop/",c("speculation","notspeculation)
+#' xml_grab("C:/Users/User/Desktop/example.xml",c("speculation","notspeculation)
+#'
+#'@author Jakob Willisch
 xml_grab <- function(files,types){
   #import for single file
   if(grepl("*.xml$",files)){
@@ -23,7 +36,7 @@ xml_grab <- function(files,types){
     #xmlName(xmltop[[2]]) #name of root's children
     #xmlSize(xmltop[[2]]) #number of nodes in each child
     #xmlSApply(xmltop[[2]], xmlName) #name(s)
-    dat <- as.data.frame(XML::xmlSApply(xmltop[[2]], xmlAttrs)) #attribute(s)
+    dat <- as.data.frame(XML::xmlSApply(xmltop[[2]], XML::xmlAttrs)) #attribute(s)
 
     #put xml attributes in separate frames
     dat_H <- data.frame(t(dat[colnames(dat)=="HEDGE"]),filename=rep(filename,nrow(t(dat[colnames(dat)=="HEDGE"]))),stringsAsFactors = F)

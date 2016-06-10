@@ -1,10 +1,12 @@
 Package: xmlAnnotate
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Extract Text Annotations from XML
 Version: 0.1
 Date: 2016-04-08
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Author: Jakob Willisch, Nicole Baerg
+Maintainer: Jakob Willisch <jakob.willisch@googlemail.com>
+Description: XML annotate provides a function to automate data extraction from text annotations contained in multiple of single .xml files. 
+It returns a data frame containing a unique sentence id, the sentence number, the topic or annotation code of the sentence, the word that triggered the annotation as well as the position of the sentence and notes.
+License: GNU General Public License (GPL)
 LazyData: TRUE
+RoxygenNote: 5.0.1
