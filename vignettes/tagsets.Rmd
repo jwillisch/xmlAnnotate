@@ -1,0 +1,52 @@
+---
+title: "Extracting tags from tagsets"
+author: "Will Lowe"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Extracting tags from tagsets}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Extracting annotations
+
+Load the package
+```{r}
+library(xmlAnnotate)
+```
+and load up some test data.
+```{r}
+folder <- system.file("extdata", "fomc", package = "xmlAnnotate")
+dir(folder)
+```
+
+Extract the 'hedge' tags from the first file in that folder
+```{r}
+f <- file.path(folder, "2004_03_2-1.xml")
+f
+ftags <- get_tagset(f)
+```
+and take a look
+```{r, echo=FALSE, results='asis'}
+knitr::kable(ftags)
+```
+
+By default this function get `hedge` tags only.  So the call above is equivalent to 
+```{r,eval=FALSE}
+ftags <- get_tagset(f, nodes=c('hedge'))
+```
+We can have the `note` tags too, by adding it
+```{r}
+ftags2 <- get_tagset(f, nodes=c('hedge', 'note'))
+```
+which looks like
+```{r, echo=FALSE, results='asis'}
+knitr::kable(ftags2)
+```
+
+And if we want these tags extracted from all the XML files in a folder
+```{r}
+fftags <- get_tagsets(folder, nodes=c('hedge', 'note'))
+```
+This rowbinds the results from all the files it finds.

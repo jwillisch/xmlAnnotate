@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XML>
+<TEXT><![CDATA[
+The Federal Open Market Committee decided today to keep its target for the federal funds rate at 1 percent.
+
+The Committee continues to believe that an accommodative stance of monetary policy, coupled with robust underlying growth in productivity, is providing important ongoing support to economic activity. The evidence accumulated over the intermeeting period indicates that output is continuing to expand at a solid pace. Although job losses have slowed, new hiring has lagged. Increases in core consumer prices are muted and expected to remain low.
+
+The Committee perceives that the upside and downside risks to the attainment of sustainable growth for the next few quarters are roughly equal. The probability of an unwelcome fall in inflation has diminished in recent months and now appears almost equal to that of a rise in inflation. With inflation quite low and resource use slack, the Committee believes that it can be patient in removing its policy accommodation.
+]]></TEXT>
+<TAGS>
+<HEDGE id="H0" start="1" end="108" text="The Federal Open Market Committee decided today to keep its target for the federal funds rate at 1 percent." type="notspeculation" />
+<HEDGE id="H1" start="110" end="309" text="The Committee continues to believe that an accommodative stance of monetary policy, coupled with robust underlying growth in productivity, is providing important ongoing support to economic activity." type="speculation" />
+<HEDGE id="H2" start="310" end="426" text="The evidence accumulated over the intermeeting period indicates that output is continuing to expand at a solid pace." type="notspeculation" />
+<HEDGE id="H3" start="427" end="482" text="Although job losses have slowed, new hiring has lagged." type="notspeculation" />
+<HEDGE id="H4" start="483" end="554" text="Increases in core consumer prices are muted and expected to remain low." type="notspeculation" />
+<HEDGE id="H5" start="556" end="699" text="The Committee perceives that the upside and downside risks to the attainment of sustainable growth for the next few quarters are roughly equal." type="speculation" />
+<HEDGE id="H6" start="700" end="842" text="The probability of an unwelcome fall in inflation has diminished in recent months and now appears almost equal to that of a rise in inflation." type="speculation" />
+<HEDGE id="H7" start="843" end="975" text="With inflation quite low and resource use slack, the Committee believes that it can be patient in removing its policy accommodation." type="speculation" />
+<WORD id="W0" start="363" end="373" text=" indicates" type="plus" />
+<WORD id="W1" start="569" end="580" text=" perceives " type="minus" />
+<WORD id="W2" start="781" end="811" text=" and now appears almost equal " type="minus" />
+<WORD id="W3" start="905" end="914" text=" believes" type="minus" />
+<NOTE id="N0" start="906" end="914" text="believes" HERE="Is this a tempering or a decision?" />
+</TAGS>
+</XML>

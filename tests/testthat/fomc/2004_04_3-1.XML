@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XML>
+<TEXT><![CDATA[
+The Federal Open Market Committee decided today to keep its target for the federal funds rate at 1 percent.
+
+The Committee continues to believe that an accommodative stance of monetary policy, coupled with robust underlying growth in productivity, is providing important ongoing support to economic activity. The evidence accumulated over the intermeeting period indicates that output is continuing to expand at a solid rate and hiring appears to have picked up. Although incoming inflation data have moved somewhat higher, long-term inflation expectations appear to have remained well-anchored.
+
+The Committee perceives that the upside and downside risks to the attainment of sustainable growth for the next few quarters are roughly equal. Similarly, the upside and downside risks to the goal of price stability are seen as roughly equal. At this juncture, with inflation low and resource use slack, the Committee believes that policy accommodation can likely be removed at a measured pace.
+]]></TEXT>
+<TAGS>
+<HEDGE id="H0" start="1" end="108" text="The Federal Open Market Committee decided today to keep its target for the federal funds rate at 1 percent." type="notspeculation" />
+<HEDGE id="H2" start="110" end="309" text="The Committee continues to believe that an accommodative stance of monetary policy, coupled with robust underlying growth in productivity, is providing important ongoing support to economic activity." type="speculation" />
+<HEDGE id="H3" start="310" end="463" text="The evidence accumulated over the intermeeting period indicates that output is continuing to expand at a solid rate and hiring appears to have picked up." type="speculation" />
+<HEDGE id="H4" start="464" end="596" text="Although incoming inflation data have moved somewhat higher, long-term inflation expectations appear to have remained well-anchored." type="speculation" />
+<HEDGE id="H5" start="598" end="742" text="The Committee perceives that the upside and downside risks to the attainment of sustainable growth for the next few quarters are roughly equal. " type="speculation" />
+<HEDGE id="H6" start="742" end="840" text="Similarly, the upside and downside risks to the goal of price stability are seen as roughly equal." type="speculation" />
+<HEDGE id="H7" start="840" end="992" text=" At this juncture, with inflation low and resource use slack, the Committee believes that policy accommodation can likely be removed at a measured pace." type="notspeculation" />
+<NOTE id="N0" start="915" end="937" text=" believes that policy " HERE="Note that this phrasing sounds like a decision compared to previously" />
+</TAGS>
+</XML>

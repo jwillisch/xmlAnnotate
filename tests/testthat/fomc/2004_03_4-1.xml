@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XML>
+<TEXT><![CDATA[
+The Federal Open Market Committee decided today to keep its target for the federal funds rate at 1 percent.
+
+The Committee continues to believe that an accommodative stance of monetary policy, coupled with robust underlying growth in productivity, is providing important ongoing support to economic activity. The evidence accumulated over the intermeeting period indicates that output is continuing to expand briskly. Although new hiring remains subdued, other indicators suggest continued improvement in the labor market. Although new hiring has been disappointing, other indicators suggest continued improvement in the labor market. Increases in core consumer prices are muted and expected to remain low. To date, increases in core consumer prices have been muted and inflation expectations remain contained.
+
+
+The Committee perceives that the upside and downside risks to the attainment of susta inable growth for the next few quarters are roughly equal. The probability of a rise in inflation about equals that of an unwelcome decline in inflation. The Committee recognizes that the stance of monetary policy has been quite accommodative for some time. Nonetheless, with inflation low and resource use slack, the Committee believes that it can still be patient in removing its policy accommodation.
+]]></TEXT>
+<TAGS>
+<HEDGE id="H0" start="1" end="108" text="The Federal Open Market Committee decided today to keep its target for the federal funds rate at 1 percent." type="notspeculation" />
+<HEDGE id="H1" start="110" end="310" text="The Committee continues to believe that an accommodative stance of monetary policy, coupled with robust underlying growth in productivity, is providing important ongoing support to economic activity. " type="notspeculation" />
+<HEDGE id="H2" start="309" end="418" text=" The evidence accumulated over the intermeeting period indicates that output is continuing to expand briskly." type="speculation" />
+<HEDGE id="H3" start="419" end="523" text="Although new hiring remains subdued, other indicators suggest continued improvement in the labor market." type="speculation" />
+<HEDGE id="H4" start="524" end="635" text="Although new hiring has been disappointing, other indicators suggest continued improvement in the labor market." type="speculation" />
+<HEDGE id="H5" start="636" end="707" text="Increases in core consumer prices are muted and expected to remain low." type="speculation" />
+<HEDGE id="H6" start="708" end="811" text="To date, increases in core consumer prices have been muted and inflation expectations remain contained." type="notspeculation" />
+<HEDGE id="H7" start="814" end="958" text="The Committee perceives that the upside and downside risks to the attainment of susta inable growth for the next few quarters are roughly equal." type="notspeculation" />
+<HEDGE id="H8" start="959" end="1053" text="The probability of a rise in inflation about equals that of an unwelcome decline in inflation." type="speculation" />
+<HEDGE id="H9" start="1054" end="1156" text="The Committee recognizes that the stance of monetary policy has been quite accommodative for some time" type="notspeculation" />
+<HEDGE id="H10" start="1158" end="1303" text="Nonetheless, with inflation low and resource use slack, the Committee believes that it can still be patient in removing its policy accommodation." type="speculation" />
+<WORD id="W0" start="364" end="373" text="indicates" type="minus" />
+<WORD id="W1" start="473" end="490" text="suggest continued" type="plus" />
+<WORD id="W2" start="419" end="427" text="Although" type="minus" />
+<WORD id="W3" start="669" end="679" text=" are muted" type="minus" />
+<WORD id="W4" start="684" end="702" text="expected to remain" type="minus" />
+<WORD id="W5" start="751" end="766" text="have been muted" type="minus" />
+<WORD id="W6" start="794" end="810" text="remain contained" type="plus" />
+<WORD id="W7" start="827" end="837" text=" perceives" type="minus" />
+<WORD id="W8" start="1228" end="1254" text="believes that it can still" type="minus" />
+<NOTE id="N0" start="523" end="634" text=" Although new hiring has been disappointing, other indicators suggest continued improvement in the labor market" HERE="This must be a mistake - edit?" />
+<NOTE id="N1" start="998" end="1010" text="about equals" HERE="This is a probability statement with about a and b" />
+</TAGS>
+</XML>
