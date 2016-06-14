@@ -3,8 +3,11 @@ Type: Package
 Title: Extract Text Annotations from XML
 Version: 0.1
 Date: 2016-04-08
-Author: Jakob Willisch, Nicole Baerg
-Maintainer: Jakob Willisch <jakob.willisch@googlemail.com>
+Authors@R: as.person(c(
+    "Jakob Willisch <jakob.willisch@googlemail.com> [aut, cre]",
+    "Nicole Baerg <nicole.baerg@gmail.com> [aut]",
+    "Will Lowe <conjugateprior@gmail.com> [aut]"
+  ))
 Description: XML annotate provides a function to automate data extraction
     from text annotations contained in multiple of single .xml files. It returns a
     data frame containing a unique sentence id, the sentence number, the topic or
