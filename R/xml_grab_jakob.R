@@ -6,10 +6,10 @@
 #' @param types A string vector of length 2 indicating the topic types that were used for annotation
 #'
 #' @return S3 \code{data.frame} object containing a sentence id, sentence number,topic code,trigger words, sentence span and position in the text and notes,
-#' @examples
-#' xml_grab("C:/Users/User/Desktop/",c("speculation","notspeculation)
-#' xml_grab("C:/Users/User/Desktop/example.xml",c("speculation","notspeculation)
-#'
+#' @examples \dontrun{
+#' xml_grab("C:/Users/User/Desktop/",c("speculation","notspeculation"))
+#' xml_grab("C:/Users/User/Desktop/example.xml",c("speculation","notspeculation"))
+#' }
 #'@author Jakob Willisch
 xml_grab <- function(files,types){
   #import for single file

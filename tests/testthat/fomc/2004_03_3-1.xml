@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XML>
+<TEXT><![CDATA[
+The Federal Open Market Committee decided today to keep its target for the federal funds rate at 1 percent.
+
+The Committee continues to believe that an accommodative stance of monetary policy, coupled with robust underlying growth in productivity, is providing important ongoing support to economic activity. The evidence accumulated over the intermeeting period indicates that output is continuing to expand briskly. Although new hiring has been disappointing, other indicators suggest continued improvement in the labor market. Increases in core consumer prices are muted and expected to remain low. 
+
+
+The Committee perceives that the upside and downside risks to the attainment of susta inable growth for the next few quarters are roughly equal. The probability, though minor, of an unwelcome fall in inflation has diminished in recent months but likely exceeds that of a rise in inflation. With inflation quite low and resource use slack, the Committee believes that it can be patient in removing its policy accommodation.
+]]></TEXT>
+<TAGS>
+<HEDGE id="H0" start="1" end="108" text="The Federal Open Market Committee decided today to keep its target for the federal funds rate at 1 percent." type="speculation" />
+<HEDGE id="H1" start="110" end="310" text="The Committee continues to believe that an accommodative stance of monetary policy, coupled with robust underlying growth in productivity, is providing important ongoing support to economic activity. " type="notspeculation" />
+<HEDGE id="H2" start="309" end="418" text=" The evidence accumulated over the intermeeting period indicates that output is continuing to expand briskly." type="speculation" />
+<HEDGE id="H3" start="419" end="530" text="Although new hiring has been disappointing, other indicators suggest continued improvement in the labor market." type="speculation" />
+<HEDGE id="H4" start="531" end="602" text="Increases in core consumer prices are muted and expected to remain low." type="speculation" />
+<HEDGE id="H5" start="606" end="751" text="The Committee perceives that the upside and downside risks to the attainment of susta inable growth for the next few quarters are roughly equal. " type="speculation" />
+<HEDGE id="H6" start="751" end="894" text="The probability, though minor, of an unwelcome fall in inflation has diminished in recent months but likely exceeds that of a rise in inflation" type="speculation" />
+<HEDGE id="H7" start="895" end="1028" text=" With inflation quite low and resource use slack, the Committee believes that it can be patient in removing its policy accommodation." type="speculation" />
+<WORD id="W0" start="364" end="373" text="indicates" type="minus" />
+<WORD id="W1" start="313" end="322" text=" evidence" type="plus" />
+<WORD id="W2" start="480" end="487" text="suggest" type="minus" />
+<WORD id="W3" start="565" end="574" text="are muted" type="minus" />
+<WORD id="W4" start="579" end="587" text="expected" type="minus" />
+<WORD id="W5" start="754" end="780" text=" probability, though minor" type="plus" />
+<WORD id="W6" start="848" end="866" text="but likely exceeds" type="minus" />
+</TAGS>
+</XML>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XML>
+<TEXT><![CDATA[
+The Federal Open Market Committee decided today to keep its target for the federal funds rate at 1 percent.
+
+The Committee continues to believe that an accommodative stance of monetary policy, coupled with robust underlying growth in productivity, is providing important ongoing support to economic activity. The evidence accumulated over the intermeeting period indicates that output is continuing to expand at a solid rate and hiring appears to have picked up. Although incoming inflation data have moved somewhat higher, core inflation is expected to remain low.
+
+The Committee perceives that the upside and downside risks to the attainment of sustainable growth for the next few quarters are roughly equal. Similarly, the upside and downside risks to the goal of price stability are seen as roughly equal. Nonetheless, with inflation low and resource use slack, the Committee believes that it can be patient in removing its policy accommodation.
+]]></TEXT>
+<TAGS>
+<HEDGE id="H0" start="1" end="108" text="The Federal Open Market Committee decided today to keep its target for the federal funds rate at 1 percent." type="notspeculation" />
+<HEDGE id="H1" start="110" end="310" text="The Committee continues to believe that an accommodative stance of monetary policy, coupled with robust underlying growth in productivity, is providing important ongoing support to economic activity. " type="notspeculation" />
+<HEDGE id="H2" start="310" end="463" text="The evidence accumulated over the intermeeting period indicates that output is continuing to expand at a solid rate and hiring appears to have picked up." type="speculation" />
+<HEDGE id="H3" start="464" end="566" text="Although incoming inflation data have moved somewhat higher, core inflation is expected to remain low." type="speculation" />
+<HEDGE id="H4" start="568" end="711" text="The Committee perceives that the upside and downside risks to the attainment of sustainable growth for the next few quarters are roughly equal." type="speculation" />
+<HEDGE id="H5" start="711" end="811" text=" Similarly, the upside and downside risks to the goal of price stability are seen as roughly equal. " type="speculation" />
+<HEDGE id="H6" start="811" end="950" text="Nonetheless, with inflation low and resource use slack, the Committee believes that it can be patient in removing its policy accommodation." type="speculation" />
+<WORD id="W0" start="363" end="373" text=" indicates" type="plus" />
+<WORD id="W1" start="437" end="444" text="appears" type="minus" />
+<WORD id="W2" start="582" end="591" text="perceives" type="minus" />
+<WORD id="W3" start="784" end="795" text="are seen as" type="minus" />
+<WORD id="W4" start="881" end="894" text="believes that" type="minus" />
+</TAGS>
+</XML>

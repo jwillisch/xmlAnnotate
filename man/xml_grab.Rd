@@ -12,14 +12,18 @@ xml_grab(files, types)
 \item{types}{A string vector of length 2 indicating the topic types that were used for annotation}
 }
 \value{
-A \code{data.frame} object containing a sentence id, sentence number,topic code,trigger words, sentence span and position in the text and notes,
+S3 \code{data.frame} object containing a sentence id, sentence number,topic code,trigger words, sentence span and position in the text and notes,
 }
 \description{
 \code{xml_grab} takes one or multiple xml files containing annotated text and extracts annotations and the textpositions they belong to in a neatly formated dataframe.
 }
 \examples{
-xml_grab("C:/Users/User/Desktop/",c("speculation","notspeculation)
-xml_grab("C:/Users/User/Desktop/example.xml",c("speculation","notspeculation)
-
+\dontrun{
+xml_grab("C:/Users/User/Desktop/",c("speculation","notspeculation"))
+xml_grab("C:/Users/User/Desktop/example.xml",c("speculation","notspeculation"))
+}
+}
+\author{
+Jakob Willisch
 }
 
