@@ -15,10 +15,13 @@ Description: XML annotate provides a function to automate data extraction
     as the position of the sentence and notes.
 License: GPL-2
 LazyData: TRUE
-RoxygenNote: 5.0.0
+RoxygenNote: 5.0.1
 Imports:
-    rvest, xml2, XML
-Suggests: testthat,
+    rvest,
+    xml2,
+    XML
+Suggests:
+    testthat,
     knitr,
     rmarkdown
 VignetteBuilder: knitr

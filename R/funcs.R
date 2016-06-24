@@ -66,3 +66,45 @@ get_tagsets <- function(x, nodes=c("hedge")){
   rownames(ddf) <- NULL
   ddf
 }
+
+#' Match different nodes based on start and endpoints
+#'
+#' @param tagset Data-frame returned by \code{get_tagset} or \code{get_tagsets}
+#' @param match_x Tag value of node to be matched on
+#' @param match_y Tag value to be matched
+#'
+#' @return a \code{data.frame} of  similar structure as the return of \code{get_tagset} with values of nodes specified in \code{match_y} matched to the corresponding rows of nodes specified in \code{match_x} based on the start-end intervals.
+#'
+#' @export
+match_nodes <- function(tagset, match_x, match_y){
+  lst <- list()
+  for (nname in match_y){
+  # end point
+  x <- as.integer(tagset$end[tagset$node==match_x])+1
+  y <- as.integer(tagset$end[tagset$node==nname])
+
+  #check if endpoints are monotonically increasing
+    if(all(x==cummax(x))){
+      #index mapping node values of match_y to node values of match_x
+      y_index <- findInterval(y,x)+1
+    }
+  #determine non-increasing end points and prompt if they should be excluded
+    else{
+      badpoints <- which(!(x==cummax(x)))
+      message("The endpoints specified are not monotonically increasing for ",match_x," at end points:",paste0(badpoints-1,sep = ","))
+
+    }
+  y_id <- rep(NA,nrow(tagset[tagset$node==match_x,]))
+  y_id[unique(y_index)] <- tapply(tagset$id[tagset$node==nname],y_index,FUN=paste0,collapse=";")
+  y_text <- rep(NA,nrow(tagset[tagset$node==match_x,]))
+  y_text[unique(y_index)] <- tapply(tagset$text[tagset$node==nname],y_index,FUN=paste0,collapse=";")
+  y_type <- rep(NA,nrow(tagset[tagset$node==match_x,]))
+  y_type[unique(y_index)] <- tapply(tagset$type[tagset$node==nname],y_index,FUN=paste0,collapse=";")
+
+  lst[[nname]] <- data.frame(y_id,y_text,y_type,stringsAsFactors = F)
+  colnames(lst[[nname]]) <- c(paste0("_id"),paste0("_text"),paste0("_type"))
+  }
+df <- do.call(cbind,args=list(tagset[tagset$node==match_x,],lst))
+rownames(df) <- NULL
+return(df)
+}
