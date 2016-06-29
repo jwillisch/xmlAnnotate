@@ -1,6 +1,6 @@
 ---
 title: "Extracting tags from tagsets"
-author: "Will Lowe"
+author: "Will Lowe, Jakob Willisch and Nicole Baerg"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -50,6 +50,8 @@ And if we want these tags extracted from all the XML files in a folder
 fftags <- get_tagsets(folder, nodes=c('hedge', 'note'))
 ```
 This rowbinds the results from all the files it finds.
+
+## Match Tags
 
 If we want to extract all tags but want to match the  `word` and `note` tags to the `hedge` tag based on their positions in the text
 
