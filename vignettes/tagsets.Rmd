@@ -1,6 +1,9 @@
 ---
 title: "Extracting tags from tagsets"
-author: "Will Lowe, Jakob Willisch and Nicole Baerg"
+author: 
+"Will Lowe"
+"Nicole Baerg"
+"Jakob Willisch"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
