@@ -33,3 +33,6 @@ fftag2 <- match_nodes(fftag, match_x = "hedge", match_y = c("word","note"))
 ## ---- echo=FALSE, results='asis'-----------------------------------------
 knitr::kable(fftag2)
 
+## ------------------------------------------------------------------------
+fftags2 <- plyr::ddply(fftags,~file,match_nodes,match_x="hedge",match_y=c("word","note"))
+

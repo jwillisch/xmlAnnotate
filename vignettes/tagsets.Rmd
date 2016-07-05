@@ -1,9 +1,9 @@
 ---
 title: "Extracting tags from tagsets"
 author: 
-"Will Lowe"
-"Nicole Baerg"
-"Jakob Willisch"
+- "Will Lowe"
+- "Nicole Baerg"
+- "Jakob Willisch"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -63,7 +63,14 @@ fftag <- get_tagset(f, nodes=c('hedge','word', 'note'))
 
 fftag2 <- match_nodes(fftag, match_x = "hedge", match_y = c("word","note"))
 ```
-which looks like
+which gives you all `word` and `note` tags that fall into the span of the respective `hedge`tags.
 ```{r, echo=FALSE, results='asis'}
 knitr::kable(fftag2)
 ```
+
+This only works for \code{get_tagset} output meaning for data extracted from a single .xml file. For output from \code{get_tagsets} generated from multiple files you have to apply match_nodes after subsetting for each filename
+
+```{r}
+fftags2 <- plyr::ddply(fftags,~file,match_nodes,match_x="hedge",match_y=c("word","note"))
+```
+
