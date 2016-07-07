@@ -11,8 +11,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <meta name="author" content="Will Lowe" />
+<meta name="author" content="Nicole Baerg" />
+<meta name="author" content="Jakob Willisch" />
 
-<meta name="date" content="2016-06-24" />
+<meta name="date" content="2016-07-07" />
 
 <title>Extracting tags from tagsets</title>
 
@@ -70,7 +72,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">Extracting tags from tagsets</h1>
 <h4 class="author"><em>Will Lowe</em></h4>
-<h4 class="date"><em>2016-06-24</em></h4>
+<h4 class="author"><em>Nicole Baerg</em></h4>
+<h4 class="author"><em>Jakob Willisch</em></h4>
+<h4 class="date"><em>2016-07-07</em></h4>
 
 
 
@@ -311,11 +315,14 @@ f</code></pre></div>
 <pre><code>## There are no 'note' tags in 'C:/Program Files/R/R-3.2.3/library/xmlAnnotate/extdata/fomc/2004_03_3-1.xml's tagset</code></pre>
 <pre><code>## There are no 'note' tags in 'C:/Program Files/R/R-3.2.3/library/xmlAnnotate/extdata/fomc/2004_04_2-1.xml's tagset</code></pre>
 <p>This rowbinds the results from all the files it finds.</p>
+</div>
+<div id="match-tags" class="section level2">
+<h2>Match Tags</h2>
 <p>If we want to extract all tags but want to match the <code>word</code> and <code>note</code> tags to the <code>hedge</code> tag based on their positions in the text</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fftag &lt;-<span class="st"> </span><span class="kw">get_tagset</span>(f, <span class="dt">nodes=</span><span class="kw">c</span>(<span class="st">'hedge'</span>,<span class="st">'word'</span>, <span class="st">'note'</span>))
 
 fftag2 &lt;-<span class="st"> </span><span class="kw">match_nodes</span>(fftag, <span class="dt">match_x =</span> <span class="st">&quot;hedge&quot;</span>, <span class="dt">match_y =</span> <span class="kw">c</span>(<span class="st">&quot;word&quot;</span>,<span class="st">&quot;note&quot;</span>))</code></pre></div>
-<p>which looks like</p>
+<p>which gives you all <code>word</code> and <code>note</code> tags that fall into the span of the respective <code>hedge</code>tags.</p>
 <table>
 <thead>
 <tr class="header">
@@ -466,6 +473,8 @@ fftag2 &lt;-<span class="st"> </span><span class="kw">match_nodes</span>(fftag, 
 </tr>
 </tbody>
 </table>
+<p>This only works for  output meaning for data extracted from a single .xml file. For output from  generated from multiple files you have to apply match_nodes after subsetting for each filename</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fftags2 &lt;-<span class="st"> </span>plyr::<span class="kw">ddply</span>(fftags,~file,match_nodes,<span class="dt">match_x=</span><span class="st">&quot;hedge&quot;</span>,<span class="dt">match_y=</span><span class="kw">c</span>(<span class="st">&quot;word&quot;</span>,<span class="st">&quot;note&quot;</span>))</code></pre></div>
 </div>
 
 
