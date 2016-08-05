@@ -4,12 +4,14 @@
 \alias{get_tagset}
 \title{Get tags of selected types from an XML file}
 \usage{
-get_tagset(x, nodes = c("hedge"))
+get_tagset(x, nodes = c("hedge"), mae = "2.1")
 }
 \arguments{
 \item{x}{filename}
 
 \item{nodes}{vector of tag names to extract (default: just 'hedge')}
+
+\item{mae}{version of MAE that produced the XML tags}
 }
 \value{
 a \code{data.frame} with headings:

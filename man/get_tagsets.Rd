@@ -4,7 +4,7 @@
 \alias{get_tagsets}
 \title{Apply get_tagset to each XML file in a folder}
 \usage{
-get_tagsets(x, nodes = c("hedge"))
+get_tagsets(x, nodes = c("hedge"), mae = "2.1")
 }
 \arguments{
 \item{x}{folder}

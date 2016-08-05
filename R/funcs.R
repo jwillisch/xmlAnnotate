@@ -2,6 +2,7 @@
 #'
 #' @param x filename
 #' @param nodes vector of tag names to extract (default: just 'hedge')
+#' @param mae version of MAE that produced the XML tags
 #'
 #' @return a \code{data.frame} with headings:
 #' \itemize{
@@ -14,7 +15,7 @@
 #'  \item \code{here} value of 'here' attribute, if there is one
 #' }
 #' @export
-get_tagset <- function(x, nodes=c("hedge")){
+get_tagset <- function(x, nodes=c("hedge"),mae="2.1"){
   txt <- gsub("type(speculation|notspeculation)>=", "type=",
               paste(readLines(x, warn=FALSE), collapse = "\n"), fixed=TRUE)
   lst <- list()
@@ -24,21 +25,42 @@ get_tagset <- function(x, nodes=c("hedge")){
     if (length(hh)==0){
       message("There are no '", nname, "' tags in '", x,"'s tagset")
     } else {
-      df <- data.frame(file=basename(x),
-                       node=nname,
-                       id=rvest::html_attr(hh, "id"),
-                       start=rvest::html_attr(hh, "start"),
-                       end=rvest::html_attr(hh, "end"),
-                       text=rvest::html_attr(hh, "text"),
-                       type=NA,
-                       here=NA,
-                       stringsAsFactors=FALSE)
+        if (mae=="2.1"){
+        df <- data.frame(file=basename(x),
+                         node=nname,
+                         id=rvest::html_attr(hh, "id"),
+                         start=rvest::html_attr(hh, "start"),
+                         end=rvest::html_attr(hh, "end"),
+                         text=rvest::html_attr(hh, "text"),
+                         type=NA,
+                         here=NA,
+                         stringsAsFactors=FALSE)
 
-      df$type <- as.character(rvest::html_attr(hh, "type"))
-      df$here <- as.character(rvest::html_attr(hh, "here"))
+        df$type <- as.character(rvest::html_attr(hh, "type"))
+        df$here <- as.character(rvest::html_attr(hh, "here"))
 
-      lst[[nname]] <- df
-    }
+        lst[[nname]] <- df
+        } else{
+            if(mae=="2.0"){
+              df <- data.frame(file=basename(x),
+                               node=nname,
+                               id=rvest::html_attr(hh, "id"),
+                               start=rapply(strsplit(rvest::html_attr(hh, "spans"),split = "~"), function(x) x[1]),
+                               end=rapply(strsplit(rvest::html_attr(hh, "spans"),split = "~"), function(x) x[2]),
+                               text=rvest::html_attr(hh, "text"),
+                               type=NA,
+                               here=NA,
+                               stringsAsFactors=FALSE)
+
+            df$type <- as.character(rvest::html_attr(hh, "type"))
+            df$here <- as.character(rvest::html_attr(hh, "here"))
+
+            lst[[nname]] <- df
+            } else{
+              message("The MAE version you specified is not supported")
+            }
+        }
+      }
   }
   ddf <- do.call(what=rbind, args=lst)
   rownames(ddf) <- NULL
@@ -53,14 +75,14 @@ get_tagset <- function(x, nodes=c("hedge")){
 #' @return a \code{data.frame} containing the \code{rbind}-ed output of \code{get_tagsets}
 #'         for each XML file in the folder
 #' @export
-get_tagsets <- function(x, nodes=c("hedge")){
+get_tagsets <- function(x, nodes=c("hedge"),mae="2.1"){
   fls <- dir(x, pattern=".xml|.XML")
   if (length(fls)==0)
     stop("There are no XML files in '", x, "'")
 
   lst <- list()
   for (f in fls)
-    lst[[f]] = get_tagset(file.path(x, f), nodes=nodes)
+    lst[[f]] = get_tagset(file.path(x, f), nodes=nodes,mae=mae)
 
   ddf <- do.call(what=rbind, args=lst)
   rownames(ddf) <- NULL
